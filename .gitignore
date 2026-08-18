@@ -15,6 +15,9 @@ env/
 .mypy_cache/
 *.db
 *.sqlite3
+backend/htmlcov/
+backend/report.xml
+backend/.coverage
 
 # --- Node / Next.js (frontend) ---
 node_modules/
@@ -27,6 +30,9 @@ next-env.d.ts
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+frontend/coverage/
+frontend/playwright-report/
+frontend/test-results/
 
 # --- Editor / OS ---
 .DS_Store

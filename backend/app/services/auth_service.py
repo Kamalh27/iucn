@@ -32,7 +32,7 @@ class AuthService:
         if not settings.admin_email or not settings.admin_password:
             return
 
-        existing = self.user_repository.get_active_by_email(settings.admin_email)
+        existing = self.user_repository.get_by_email(settings.admin_email)
         if existing:
             updated = False
             if existing.role != "admin":

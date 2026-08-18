@@ -45,6 +45,32 @@ frontend-build:
 frontend-lint:
     cd frontend && npm run lint
 
+# Tests
+backend-test-install: backend-install
+    backend/.venv/bin/pip install -q pytest pytest-cov
+
+backend-test: backend-test-install
+    cd backend && .venv/bin/python -m pytest -q --cov=app --cov-report=term-missing --cov-report=html:htmlcov --junitxml=report.xml
+
+backend-test-security: backend-test-install
+    backend/.venv/bin/pip install -q bandit pip-audit
+    cd backend && .venv/bin/python -m bandit -r app -q -c pyproject.toml
+    cd backend && .venv/bin/python -m pip_audit
+
+frontend-test: frontend-install
+    cd frontend && npm run test:coverage
+
+frontend-test-e2e: frontend-install
+    cd frontend && npx playwright install --with-deps chromium
+    cd frontend && npm run test:e2e
+
+frontend-test-security: frontend-install
+    cd frontend && npm run test:security
+
+test: backend-test frontend-test
+
+test-all: backend-test backend-test-security frontend-test frontend-test-e2e frontend-test-security
+
 # Local app development
 dev-setup: backend-install
     @if [ ! -d frontend/node_modules ]; then \

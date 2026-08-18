@@ -7,12 +7,15 @@ psycopg[binary]>=3.3.4,<4
 GeoAlchemy2>=0.18,<1
 python-multipart>=0.0.20,<1
 rasterio>=1.5.0,<2
-rio-cogeo>=7.0.2,<8
+# Capped at <6: titiler.application's 0.x releases (see the pin below) all
+# require rio-cogeo>=5.0,<6.0; >=7 makes the dependency graph unsatisfiable.
+rio-cogeo>=5.4,<6
 shapely>=2.1.1,<3
 pyproj>=3.7.2,<4
 geopandas>=1.1.4,<2
 pyogrio>=0.11,<1
-pyarrow>=18,<23
+# >=23.0.1 fixes PYSEC-2026-113.
+pyarrow>=23.0.1,<24
 httpx>=0.28.1,<1
 alembic>=1.17,<2
 titiler.application>=0.23,<1
