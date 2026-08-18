@@ -41,8 +41,8 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="nbs-auth-input h-9 border-0 bg-transparent px-0 py-0 shadow-none focus-visible:ring-0"
-            placeholder="admin@nbs.org"
+            className="crva-auth-input h-9 border-0 bg-transparent px-0 py-0 shadow-none focus-visible:ring-0"
+              placeholder="admin@local.dev"
             required
           />
         </div>
@@ -56,7 +56,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className="nbs-auth-input h-9 border-0 bg-transparent px-0 py-0 shadow-none focus-visible:ring-0"
+            className="crva-auth-input h-9 border-0 bg-transparent px-0 py-0 shadow-none focus-visible:ring-0"
             placeholder="admin123"
             required
           />

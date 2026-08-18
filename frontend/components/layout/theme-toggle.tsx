@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 
 import { Switch } from "@/components/ui/switch"
 
-const THEME_KEY = "nbs-theme"
+const THEME_KEY = "crva-theme"
 
 type Theme = "light" | "dark"
 

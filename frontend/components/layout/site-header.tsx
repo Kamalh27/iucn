@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Map } from "lucide-react"
 
 import { ThemeToggle } from "@/components/layout/theme-toggle"
+import { LanguageSwitcher } from "@/components/i18n/language-switcher"
 import { cn } from "@/lib/utils"
 
 type SiteHeaderProps = {
@@ -18,9 +19,9 @@ export function SiteHeader({ className = "" }: SiteHeaderProps) {
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
         <Link href="/" className="leading-tight text-[var(--adpc-red)]">
-          <span className="block text-xl font-semibold tracking-[0.08em]">NBS</span>
+          <span className="block text-xl font-semibold tracking-[0.08em]">CRVA</span>
           <span className="hidden text-[11px] font-medium tracking-[0.14em] text-slate-700 sm:block dark:text-slate-300">
-            Nature Based Solutions
+            Climate Risk and Vulnerability Assessment
           </span>
         </Link>
 
@@ -32,6 +33,7 @@ export function SiteHeader({ className = "" }: SiteHeaderProps) {
             <Map className="size-4" />
             Map Viewer
           </Link>
+          <LanguageSwitcher />
           <ThemeToggle />
         </div>
       </div>

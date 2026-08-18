@@ -1,4 +1,4 @@
-const TOKEN_KEY = "nbs_access_token"
+const TOKEN_KEY = "crva_access_token"
 
 export function saveToken(token: string): void {
   localStorage.setItem(TOKEN_KEY, token)

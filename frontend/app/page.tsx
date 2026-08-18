@@ -11,9 +11,9 @@ export default function HomePage() {
       <main className="min-h-screen bg-[linear-gradient(135deg,var(--adpc-red-soft),#ffffff_55%,#f8fafc)] pt-24 dark:bg-none dark:bg-black">
         <section className="mx-auto w-full max-w-5xl px-4 pb-12">
           <div className="rounded-2xl border border-red-200/80 bg-white/85 p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-950/80">
-            <h1 className="text-4xl font-semibold leading-tight text-slate-900 dark:text-slate-100">Nature Based Solutions</h1>
+            <h1 className="text-4xl font-semibold leading-tight text-slate-900 dark:text-slate-100">Climate Risk and Vulnerability Assessment</h1>
             <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-slate-700 dark:text-slate-300">
-              NBS provides a public map viewer with an admin workspace for operational tools.
+              CRVA provides a public map viewer with an admin workspace for operational tools.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

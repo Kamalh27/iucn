@@ -35,7 +35,7 @@ function normalizeErrorMessage(detail: ErrorDetail | undefined, status: number):
     }
   }
 
-  if (detail && typeof detail === "object") {
+  if (detail && typeof detail === "object" && !Array.isArray(detail)) {
     const message = detail.msg ?? detail.message ?? detail.detail
     if (typeof message === "string" && message.trim()) {
       return message
@@ -48,9 +48,8 @@ function normalizeErrorMessage(detail: ErrorDetail | undefined, status: number):
 export async function apiRequest<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const { method = "GET", body, withAuth = false } = options
 
-  const headers: HeadersInit = {
-    "Content-Type": "application/json",
-  }
+  const isFormData = typeof FormData !== "undefined" && body instanceof FormData
+  const headers: HeadersInit = isFormData ? {} : { "Content-Type": "application/json" }
 
   if (withAuth) {
     const token = getToken()
@@ -63,7 +62,7 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
   const response = await fetch(`${API_URL}${path}`, {
     method,
     headers,
-    body: body ? JSON.stringify(body) : undefined,
+    body: body ? (isFormData ? body as FormData : JSON.stringify(body)) : undefined,
   })
 
   if (response.status === 401 && withAuth) {

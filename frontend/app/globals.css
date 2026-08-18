@@ -37,18 +37,18 @@ body {
   border-color: rgb(63 63 70 / 0.9);
 }
 
-.nbs-auth-input:-webkit-autofill,
-.nbs-auth-input:-webkit-autofill:hover,
-.nbs-auth-input:-webkit-autofill:focus {
+.crva-auth-input:-webkit-autofill,
+.crva-auth-input:-webkit-autofill:hover,
+.crva-auth-input:-webkit-autofill:focus {
   -webkit-text-fill-color: rgb(15 23 42);
   -webkit-box-shadow: 0 0 0 1000px rgb(255 255 255) inset;
   box-shadow: 0 0 0 1000px rgb(255 255 255) inset;
   transition: background-color 9999s ease-in-out 0s;
 }
 
-.dark .nbs-auth-input:-webkit-autofill,
-.dark .nbs-auth-input:-webkit-autofill:hover,
-.dark .nbs-auth-input:-webkit-autofill:focus {
+.dark .crva-auth-input:-webkit-autofill,
+.dark .crva-auth-input:-webkit-autofill:hover,
+.dark .crva-auth-input:-webkit-autofill:focus {
   -webkit-text-fill-color: rgb(241 245 249);
   -webkit-box-shadow: 0 0 0 1000px rgb(24 24 27) inset;
   box-shadow: 0 0 0 1000px rgb(24 24 27) inset;

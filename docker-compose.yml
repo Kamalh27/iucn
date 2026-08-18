@@ -19,6 +19,7 @@ services:
   backend:
     build:
       context: ./backend
+    command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -28,6 +29,12 @@ services:
       ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-120}
       ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL is required}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD is required}
+      UPLOAD_DIR: /app/uploads
+      TITILER_UPLOAD_DIR: /data/uploads
+      TITILER_URL: ${TITILER_URL:-http://titiler:8000}
+      VECTOR_MVT_THRESHOLD_BYTES: ${VECTOR_MVT_THRESHOLD_BYTES:-5242880}
+    volumes:
+      - uploads_data:/app/uploads
     depends_on:
       db:
         condition: service_healthy
@@ -49,8 +56,17 @@ services:
     networks:
       - nbs
 
+  titiler:
+    image: ghcr.io/developmentseed/titiler:latest
+    restart: unless-stopped
+    volumes:
+      - uploads_data:/data/uploads:ro
+    networks:
+      - nbs
+
 networks:
   nbs:
 
 volumes:
   postgres_data:
+  uploads_data:

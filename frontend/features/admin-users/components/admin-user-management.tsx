@@ -246,7 +246,7 @@ export function AdminUserManagement() {
               type="email"
               value={form.email}
               onChange={(event) => setFormValue("email", event.target.value)}
-              placeholder="user@nbs.org"
+              placeholder="user@local.dev"
               required
             />
           </label>

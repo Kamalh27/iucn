@@ -1,4 +1,4 @@
-# NBS Base Scaffold
+# CRVA Portal
 
 Base scaffold using the same core stack as the Srilanka project:
 - Frontend: Next.js + TypeScript + Tailwind + MapLibre

@@ -27,6 +27,15 @@ just dev
 `just dev` starts backend on `http://localhost:8000` and frontend on
 `http://localhost:3000`. Without `just`, follow the [manual steps](#manual-steps-all-os) below.
 
+For local COG raster tiles, start TiTiler in a second terminal:
+
+```bash
+just tile
+```
+
+This runs TiTiler on `http://localhost:8001`; Docker Compose is not required for
+local development. Vector layers are served directly by the backend.
+
 ### Windows
 
 ```powershell
@@ -99,12 +108,19 @@ npm install
 npm run dev
 ```
 
-The backend defaults to a local SQLite file (`backend/nbs.db`) — no database
-install is required for local development. Set `ADMIN_EMAIL` /
+The backend requires a local PostgreSQL database with the PostGIS extension.
+Set `DATABASE_URL` in `backend/.env` to your local PostGIS connection, for example
+`postgresql+psycopg://postgres:postgres@localhost:5432/nbs`. Set `ADMIN_EMAIL` /
 `ADMIN_PASSWORD` in `backend/.env` to control the seeded admin login.
 
 Visit `http://localhost:3000` (app) and `http://localhost:8000/docs`
 (API docs).
+
+Database schema changes are managed with Alembic. Apply them manually with:
+
+```bash
+just backend-migrate
+```
 
 ## Production Deployment
 
@@ -167,10 +183,20 @@ Generate strong secrets with, e.g. `openssl rand -hex 32`.
 docker compose up -d --build
 ```
 
+The same workflow is available through `just`:
+
+```bash
+just compose-up       # build and start PostGIS, backend, frontend, TiTiler
+just compose-ps       # check service status
+just compose-logs backend
+just compose-down     # stop services, keep volumes
+```
+
 This starts:
 - `db` — `postgis/postgis:latest`, data persisted in the `postgres_data` volume
 - `backend` — FastAPI on port `8000`
 - `frontend` — Next.js on port `3000`
+- `titiler` — raster COG tile service on port `8001`
 
 ### 4. Open firewall ports (if `ufw` is enabled)
 

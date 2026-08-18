@@ -50,7 +50,7 @@ class AuthService:
 
         self.user_repository.create(
             email=settings.admin_email,
-            full_name="NBS Admin",
+            full_name="CRVA Admin",
             role="admin",
             password_hash=hash_password(settings.admin_password),
         )
